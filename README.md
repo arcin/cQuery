@@ -75,8 +75,8 @@ Hints:
 Implement the following functionalities:
 
 ```javascript
-EventDispatcher.on('.klass', 'shadi', function() { console.log("awesome") });
-EventDispatcher.trigger('.klass', 'shadi');
+EventDispatcher.on('.klass', 'click', function() { console.log("awesome") });
+EventDispatcher.trigger('.klass', 'click');
 // this should print "awesome" in the console.
 ```
 
