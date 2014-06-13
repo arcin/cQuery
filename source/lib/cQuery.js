@@ -2,7 +2,7 @@
  * minQuery
  */
 
-var SweetSelector = (function() {
+var SelectorEngine = (function() {
   var _id = function(selector){
     if( selector.match(/^#[a-z]+/)){
       return document.getElementById(selector.slice(1));
@@ -40,7 +40,7 @@ var DOM = (function(){
   };
 
   var _prepareElements = function(element) {
-    var elements = SweetSelector.select(element);
+    var elements = SelectorEngine.select(element);
     return elements.length === undefined ? [elements] : elements;
   };
 
@@ -91,6 +91,23 @@ var DOM = (function(){
       };
 
       _massExecute(elements, removeClassName);
+    }
+  };
+})();
+
+var EventDispatcher = (function(){
+  var _listenTo = function(element){
+    return SelectorEngine.select(element)[0];
+  };
+
+  return {
+    on: function(element, trigger, behavior){
+      _listenTo(element).addEventListener(trigger, behavior, false);
+    },
+
+    trigger: function(element, trigger){
+      var event = new Event(trigger);
+      _listenTo(element).dispatchEvent(event);
     }
   };
 })();
